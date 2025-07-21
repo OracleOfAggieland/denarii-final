@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const FUNCTIONS_URL = 'https://chat-vzg4fa75rq-uc.a.run.app';
+const FUNCTIONS_URL = process.env.NEXT_PUBLIC_FUNCTIONS_URL || 'https://chat-vzg4fa75rq-uc.a.run.app';
 
 export async function POST(request: NextRequest) {
   try {
