@@ -24,6 +24,9 @@
       "**/node_modules/**"
     ],
     "cleanUrls": true,
-    "trailingSlash": true
+    "trailingSlash": true,
+    "predeploy": [
+      "npm run build"
+    ]
   }
 }
