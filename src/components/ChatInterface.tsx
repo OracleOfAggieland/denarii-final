@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { Message } from '@/types';
 
+// Use environment variable or fallback to the Cloud Function URL
+const FUNCTIONS_URL = process.env.NEXT_PUBLIC_FUNCTIONS_URL || 'https://chat-vzg4fa75rq-uc.a.run.app';
+
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -24,7 +27,8 @@ export default function ChatInterface() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      // Call Firebase Function directly instead of Next.js API route
+      const response = await fetch(FUNCTIONS_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +93,7 @@ export default function ChatInterface() {
               <div className="font-semibold text-sm mb-1">
                 {message.role === 'user' ? 'You' : 'Denarii AI'}
               </div>
-              <div>{message.content}</div>
+              <div className="whitespace-pre-wrap">{message.content}</div>
             </div>
           ))
         )}
