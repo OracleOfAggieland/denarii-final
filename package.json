@@ -8,16 +8,14 @@
     "build:firebase": "next build",
     "check-env": "node scripts/check-env.js",
     "check-env:fix": "node scripts/check-env.js --fix",
-
     "predev": "node scripts/check-env.js",
     "start": "next start",
     "lint": "next lint",
-
-
     "deploy": "npm run build:firebase && firebase deploy",
     "deploy:hosting": "npm run build:firebase && firebase deploy --only hosting",
     "deploy:apphosting": "firebase apphosting:backends:create --location=us-central1",
-    "upload-media": "node scripts/upload-media.js"
+    "upload-media": "node scripts/upload-media.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.11",
@@ -40,6 +38,7 @@
     "dotenv": "^17.2.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.0.4",
+    "husky": "^9.1.7",
     "typescript": "^5.8.3"
   }
 }

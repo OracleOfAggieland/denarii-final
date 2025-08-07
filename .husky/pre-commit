@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Check for exposed API keys
+if git diff --cached --name-only | xargs grep -E "(AIza|sk-|firebase)" 2>/dev/null; then
+  echo "❌ Potential API key detected in commit!"
+  echo "Please remove sensitive data before committing."
+  exit 1
+fi
+
+# Ensure .next is not being committed
+if git diff --cached --name-only | grep -q "^\.next/"; then
+  echo "❌ .next folder should not be committed!"
+  exit 1
+fi
+
+# Ensure .env.local is not being committed
+if git diff --cached --name-only | grep -q "\.env\.local"; then
+  echo "❌ .env.local should not be committed!"
+  exit 1
+fi
